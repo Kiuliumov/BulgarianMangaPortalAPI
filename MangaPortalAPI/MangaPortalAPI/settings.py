@@ -29,6 +29,9 @@ ALLOWED_HOSTS = []
 
 
 # Application definition
+BASE_APPS = [
+    'accounts'
+]
 
 INSTALLED_APPS = [
     'django.contrib.admin',
@@ -38,7 +41,11 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'rest_framework'
-]
+] + BASE_APPS
+
+
+
+AUTH_USER_MODEL = "accounts.Account"
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
@@ -68,6 +75,15 @@ TEMPLATES = [
 ]
 
 WSGI_APPLICATION = 'MangaPortalAPI.wsgi.application'
+
+
+# Rest Framework
+REST_FRAMEWORK = {
+    "DEFAULT_AUTHENTICATION_CLASSES": (
+        "rest_framework_simplejwt.authentication.JWTAuthentication",
+    ),
+}
+
 
 
 # Database
